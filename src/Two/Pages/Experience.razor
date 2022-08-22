@@ -1,0 +1,148 @@
+@page "/experience"
+
+@using Models
+@using MudBlazor
+
+<MudTimeline Class="@AppClass.FadeIn" TimelineAlign="TimelineAlign.Start" TimelinePosition="TimelinePosition.Start">
+    <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+        <ItemContent>
+            <MudText Color="Color.Success" Class="mt-n1" Typo="Typo.h6" GutterBottom="true">Software Developer (Outsource)</MudText>
+            <MudText Typo="Typo.subtitle1">
+                TMBThanachart Bank Public Co., Ltd.
+                <MudLink Color="Color.Warning" Href="https://www.ttbbank.com/" Target="_blank">
+                    <MudIcon Icon="@Icons.Material.Filled.Launch" Size="Size.Small" />
+                </MudLink>
+            </MudText>
+            <MudText Typo="Typo.subtitle1">2022 - Present</MudText>
+        </ItemContent>
+    </MudTimelineItem>
+    <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+        <ItemContent>
+            <MudText Color="Color.Success" Class="mt-n1" Typo="Typo.h6" GutterBottom="true">Software Developer</MudText>
+            <MudText Typo="Typo.subtitle1">
+                B Circle Co., Ltd.
+                <MudLink Color="Color.Warning" Href="https://www.bcircle.co.th/" Target="_blank">
+                    <MudIcon Icon="@Icons.Material.Filled.Launch" Size="Size.Small" />
+                </MudLink>
+            </MudText>
+            <MudText Typo="Typo.subtitle1">2015 - 2020</MudText>
+        </ItemContent>
+    </MudTimelineItem>
+    <MudTimelineItem Color="Color.Success" Variant="Variant.Filled">
+        <ItemContent>
+            <MudText Color="Color.Success" Class="mt-n1" Typo="Typo.h6" GutterBottom="true">Software Developer</MudText>
+            <MudText Typo="Typo.subtitle1">
+                K&O Systems and Consulting Co., Ltd.
+                <MudLink Color="Color.Warning" Href="https://www.ko.in.th/" Target="_blank">
+                    <MudIcon Icon="@Icons.Material.Filled.Launch" Size="Size.Small" />
+                </MudLink>
+            </MudText>
+            <MudText Typo="Typo.subtitle1">2013 - 2014</MudText>
+        </ItemContent>
+    </MudTimelineItem>
+    <MudTimelineItem Color="Color.Warning" Variant="Variant.Filled">
+        <ItemContent>
+            <MudText Color="Color.Warning" Class="mt-n1" Typo="Typo.h6" GutterBottom="true">Experienced Programming Language</MudText>
+            <MudGrid>
+                <MudItem Class="pb-0" xs="12">
+                    <MudText Typo="Typo.caption">Advanced</MudText>
+                </MudItem>
+                @foreach (var item in programmingLanguages)
+                {
+                    <MudItem md="2" xs="6">
+                        <ExperiencePaper Data="@item"></ExperiencePaper>
+                    </MudItem>
+                }
+                <MudItem Class="pb-0" xs="12">
+                    <MudText Typo="Typo.caption">Beginner</MudText>
+                </MudItem>
+                <MudItem xs="12">
+                    @foreach (var item in subProgrammingLanguages)
+                    {
+                        <ExperienceChip Data="@item"></ExperienceChip>
+                    }
+                </MudItem>
+            </MudGrid>
+        </ItemContent>
+    </MudTimelineItem>
+    <MudTimelineItem Color="Color.Warning" Variant="Variant.Filled">
+        <ItemContent>
+            <MudText Color="Color.Warning" Class="mt-n1" Typo="Typo.h6" GutterBottom="true">Experienced Stack & Tools</MudText>
+            <MudGrid>
+                <MudItem Class="pb-0" xs="12">
+                    <MudText Typo="Typo.caption">Favorite</MudText>
+                </MudItem>
+                @foreach (var item in stackAndTools)
+                {
+                    <MudItem md="2" xs="6">
+                        <ExperiencePaper Data="@item"></ExperiencePaper>
+                    </MudItem>
+                }
+                <MudItem Class="pb-0" xs="12">
+                    <MudText Typo="Typo.caption">Sometimes</MudText>
+                </MudItem>
+                <MudItem xs="12">
+                    @foreach (var item in subStackAndTools)
+                    {
+                        <ExperienceChip Data="@item"></ExperienceChip>
+                    }
+                </MudItem>
+            </MudGrid>
+        </ItemContent>
+    </MudTimelineItem>
+</MudTimeline>
+
+@code {
+    private List<ExperienceInfo> programmingLanguages = new List<ExperienceInfo>();
+    private List<ExperienceInfo> stackAndTools = new List<ExperienceInfo>();
+    private List<ExperienceInfo> subProgrammingLanguages = new List<ExperienceInfo>();
+    private List<ExperienceInfo> subStackAndTools = new List<ExperienceInfo>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        SetProgrammingLanguages();
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void SetProgrammingLanguages()
+    {
+        programmingLanguages = new List<ExperienceInfo>
+        {
+            new ExperienceInfo("./images/experience/csharp.png", "C#", "https://docs.microsoft.com/en-us/dotnet/csharp/"),
+            new ExperienceInfo("./images/experience/javascript.png", "JavaScript", "https://www.javascript.com/"),
+            new ExperienceInfo("./images/experience/typescript.png", "TypeScript", "https://www.typescriptlang.org/"),
+        };
+        subProgrammingLanguages = new List<ExperienceInfo>
+        {
+            new ExperienceInfo("F#", "https://docs.microsoft.com/en-us/dotnet/fsharp/"),
+            new ExperienceInfo("Visual Basic", "https://docs.microsoft.com/en-us/dotnet/visual-basic/"),
+        };
+        stackAndTools = new List<ExperienceInfo>
+        {
+            new ExperienceInfo("./images/experience/dotnet.png", ".NET", "https://dotnet.microsoft.com/en-us/"),
+            new ExperienceInfo("./images/experience/angular.png", "Angular", "https://angular.io/"),
+            new ExperienceInfo("./images/experience/blazor.png", "Blazor", "https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor"),
+            new ExperienceInfo("./images/experience/caddy-2.png", "Caddy 2", "https://caddyserver.com/v2"),
+            new ExperienceInfo("./images/experience/docker.png", "Docker", "https://www.docker.com/"),
+            new ExperienceInfo("./images/experience/git.png", "Git", "https://git-scm.com/"),
+            new ExperienceInfo("./images/experience/github.svg", "GitHub", "https://github.com/"),
+            new ExperienceInfo("./images/experience/microsoft-internet-information-services.png", "Microsoft IIS", "https://www.iis.net/"),
+            new ExperienceInfo("./images/experience/microsoft-sql-server.svg", "MS SQL", "https://www.microsoft.com/en-us/sql-server/sql-server-downloads"),
+            new ExperienceInfo("./images/experience/postgresql.png", "PostgreSQL", "https://www.postgresql.org/"),
+            new ExperienceInfo("./images/experience/vim.png", "Vim", "https://www.vim.org/"),
+            new ExperienceInfo("./images/experience/visual-studio-code.png", "VS Code", "https://code.visualstudio.com/"),
+        };
+        subStackAndTools = new List<ExperienceInfo>
+        {
+            new ExperienceInfo("Alfresco", "https://www.alfresco.com/"),
+            new ExperienceInfo("Dialogflow", "https://dialogflow.cloud.google.com/"),
+            new ExperienceInfo("Firebase", "https://firebase.google.com/"),
+            new ExperienceInfo("Ionic", "https://ionicframework.com/"),
+            new ExperienceInfo("k6", "https://k6.io/"),
+            new ExperienceInfo("Line Messaging API", "https://developers.line.biz/en/services/messaging-api/"),
+            new ExperienceInfo("MongoDB", "https://www.mongodb.com/"),
+            new ExperienceInfo("MySQL", "https://reactjs.org/"),
+            new ExperienceInfo("React", "https://reactjs.org/"),
+        };
+    }
+}

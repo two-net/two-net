@@ -1,0 +1,50 @@
+@page "/contact"
+
+@using Data
+@using Microsoft.EntityFrameworkCore
+@using Models
+@using MudBlazor
+
+@inject IDbContextFactory<AppDbContext> DbFactory
+
+@inherits PageBase
+
+<MudOverlay Class="mud-height-full" Visible="isLoading" DarkBackground="true" Absolute="true">
+    <MudProgressCircular Color="Color.Success" Indeterminate="true" />
+</MudOverlay>
+<EditForm Model="@contact" OnValidSubmit="Submit">
+    <DataAnnotationsValidator />
+    <MudText Color="Color.Success" Typo="Typo.h6">How can I help you?</MudText>
+    <MudTextField @bind-Value="contact.Name" Class="mt-4" For="() => contact.Name" Label="Name" Margin="Margin.Dense" Required="true" Variant="Variant.Filled"></MudTextField>
+    <MudTextField @bind-Value="contact.Email" Class="mt-4" For="() => contact.Email" Label="Email" Margin="Margin.Dense" Required="true" Variant="Variant.Filled"></MudTextField>
+    <MudTextField @bind-Value="contact.Subject" Class="mt-4" Label="Subject" Margin="Margin.Dense" Variant="Variant.Filled"></MudTextField>
+    <MudTextField @bind-Value="contact.Message" Class="mt-4" For="() => contact.Message" Label="Message" Lines="5" Margin="Margin.Dense" Required="true" Variant="Variant.Filled"></MudTextField>
+    <MudButton ButtonType="ButtonType.Submit" Class="mt-4 mud-width-full" Color="Color.Success" Variant="Variant.Filled">Send message</MudButton>
+</EditForm>
+<MudDivider Class="my-4"></MudDivider>
+<MudLink Color="Color.Success" Href="mailto:Two.Nattapong@outlook.com">
+    <MudAlert Icon="@Icons.Material.Filled.Mail" Severity="Severity.Success" Variant="Variant.Outlined">Two.Nattapong@outlook.com</MudAlert>
+</MudLink>
+
+@code {
+    private ContactInfo contact = new ContactInfo();
+
+    private async Task Submit()
+    {
+        try
+        {
+            SetLoading(true);
+            using var context = await DbFactory.CreateDbContextAsync();
+            await context.Contacts.AddAsync(contact);
+            await context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            await ErrorAsync(ex);
+        }
+        finally
+        {
+            SetLoading(false);
+        }
+    }
+}

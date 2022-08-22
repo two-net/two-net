@@ -1,0 +1,11 @@
+@using Models
+@using MudBlazor
+
+<MudLink Href="@Data.Url" Target="_blank" Underline="Underline.None">
+    <MudChip Class="cursor-pointer" Label="true">@Data.Name</MudChip>
+</MudLink>
+
+@code {
+    [Parameter]
+    public ExperienceInfo Data { get; set; } = new ExperienceInfo();
+}

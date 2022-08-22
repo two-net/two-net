@@ -1,0 +1,16 @@
+@using Models
+@using MudBlazor
+
+<MudLink Href="@Data.Url" Target="_blank" Underline="Underline.None">
+    <MudPaper Class="cursor-pointer experience-paper pb-2" Elevation="3">
+        <div class="mud-width-full pa-2" style="background: linear-gradient(0deg, rgba(170,170,170,1) 0%, rgba(255,255,255,1) 100%);">
+            <div class="img mud-width-full" style="background-image: url(@Data.ImageUrl);"></div>
+        </div>
+        <MudText Align="Align.Center" Class="experience-text mt-2" Typo="Typo.subtitle1">@Data.Name</MudText>
+    </MudPaper>
+</MudLink>
+
+@code {
+    [Parameter]
+    public ExperienceInfo Data { get; set; } = new ExperienceInfo();
+}

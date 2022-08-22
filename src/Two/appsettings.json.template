@@ -1,0 +1,12 @@
+{
+  "ConnectionStrings": {
+    "AppDatabase": "Host=myserver;Username=mylogin;Password=mypass;Database=mydatabase"
+  },
+  "DetailedErrors": true,
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}

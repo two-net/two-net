@@ -1,0 +1,99 @@
+@page "/portfolio"
+
+@using Models
+@using MudBlazor
+
+<MudGrid>
+    @foreach (var item in portfolios)
+    {
+        <MudItem xs="6">
+            <MudPaper Class="@AppClass.FadeIn" Elevation="3">
+                <MudLink Href="@item.ImageUrl" Target="_blank">
+                    <MudImage Class="mud-width-full" Src="@item.ImageUrl"></MudImage>
+                </MudLink>
+                <div class="pa-2">
+                    <MudText Typo="Typo.subtitle1">@item.Name (@item.Year)</MudText>
+                    <MudLink Color="Color.Warning" Href="@item.ClientUrl" Target="_blank">
+                        <MudText Typo="Typo.subtitle2">@item.Client</MudText>
+                    </MudLink>
+                    <MudDivider Class="ma-2"></MudDivider>
+                    @foreach (var stack in item.Stacks)
+                    {
+                        <MudChip Label="true" Size="Size.Small">@stack</MudChip>
+                    }
+                    <MudDivider Class="ma-2"></MudDivider>
+                    <MudButton Color="Color.Success" Href="@item.Url" Target="_blank">Demo</MudButton>
+                    <MudIconButton Icon="@Icons.Material.Filled.HelpOutline" OnClick="() => OpenDialog(item)" Size="Size.Small"></MudIconButton>
+                </div>
+            </MudPaper>
+        </MudItem>
+    }
+</MudGrid>
+
+<MudDialog @bind-IsVisible="visible">
+    <DialogContent>
+        <MudText GutterBottom="true">Authentication</MudText>
+        @foreach (var item in portfolio.PortfolioAuthentications)
+        {
+            <MudText>@item.Username / @item.Password</MudText>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Success" OnClick="@CloseDialog">Ok</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    private PortfolioInfo portfolio = new PortfolioInfo();
+    private List<PortfolioInfo> portfolios = new List<PortfolioInfo>();
+    private bool visible = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        SetPortfolios();
+        await base.OnAfterRenderAsync(firstRender);
+        StateHasChanged();
+    }
+
+    private void CloseDialog() => visible = false;
+
+    private void OpenDialog(PortfolioInfo value)
+    {
+        portfolio = value with { };
+        visible = true;
+    }
+
+    private void SetPortfolios()
+    {
+        portfolios = new List<PortfolioInfo>
+        {
+            new PortfolioInfo("Practika", "https://www.practika.com/", "./images/portfolio/practika-sale-tracking.png", "Sale Tracking", "http://practika.demosoft.me/SaleTracking", 2016, new List<string> { "Alfresco", "Angular", "ASP.NET Framework", "C#", "F#", "Microsoft IIS", "PostgreSQL", "TypeScript" })
+            {
+                PortfolioAuthentications = new List<PortfolioAuthenticationInfo>
+                {
+                    new PortfolioAuthenticationInfo("sale", "sale"),
+                    new PortfolioAuthenticationInfo("salemanager", "salemanager"),
+                    new PortfolioAuthenticationInfo("salesupport", "salesupport"),
+                    new PortfolioAuthenticationInfo("director", "director"),
+                    new PortfolioAuthenticationInfo("marketing", "marketing"),
+                    new PortfolioAuthenticationInfo("seniormarketing", "seniormarketing"),
+                },
+            },
+            new PortfolioInfo("Practika", "https://www.practika.com/", "./images/portfolio/practika-crm.png", "Customer Relationship Management", "http://practika.demosoft.me/Crm", 2017, new List<string> { "Angular", "ASP.NET Core", "C#", "Microsoft IIS", "PostgreSQL", "TypeScript" })
+            {
+                PortfolioAuthentications = new List<PortfolioAuthenticationInfo>
+                {
+                    new PortfolioAuthenticationInfo("marketing", "marketing"),
+                    new PortfolioAuthenticationInfo("seniormarketing", "seniormarketing"),
+                },
+            },
+            new PortfolioInfo("National Broadcasting and Telecommunications Commission", "https://www.nbtc.go.th/", "./images/portfolio/nbtc-library.png", "Library", "http://nbtc.demosoft.me/Library", 2018, new List<string> { "Alfresco", "ASP.NET Core", "C#", "JavaScript", "NGINX", "PostgreSQL", "React" })
+            {
+                PortfolioAuthentications = new List<PortfolioAuthenticationInfo>
+                {
+                    new PortfolioAuthenticationInfo("admin", "admin"),
+                },
+            },
+        };
+    }
+}
