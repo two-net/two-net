@@ -14,19 +14,24 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
     steps:
     - uses: actions/checkout@v2
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 10.0.x
     - name: .NET - Restore dependencies
-      run: dotnet restore src/Two/Two.csproj
+      run: dotnet restore src/Two.Net/Two.Net.csproj
     - name: .NET - Build
-      run: dotnet build --no-restore src/Two/Two.csproj
+      run: dotnet build --no-restore src/Two.Net/Two.Net.csproj
     - name: .NET - Publish
-      run: dotnet publish src/Two/Two.csproj -c Release -o published
+      run: dotnet publish src/Two.Net/Two.Net.csproj -c Release -o published
 
     - name: Log into registry ${{ env.REGISTRY }}
       uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
