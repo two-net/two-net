@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0ea5e9,100:a855f7&text=Two&fontSize=64&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Senior%20Software%20Developer%20%C2%B7%20Bangkok%2C%20Thailand&descSize=18&descAlignY=58" width="100%" alt="banner">
+<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:1e40af,45:0891b2,100:059669&text=Two&fontSize=64&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Senior%20Software%20Developer%20%C2%B7%20Bangkok%2C%20Thailand&descSize=18&descAlignY=58" width="100%" alt="banner">
 
 <a href="https://github.com/two-net"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=2600&pause=1000&color=38BDF8&center=true&vCenter=true&width=540&height=45&lines=Senior+Software+Developer;Full-stack+Developer;.NET+%C2%B7+Angular+%C2%B7+Blazor+%C2%B7+React;13%2B+years+of+enterprise+systems" alt="Typing SVG"></a>
 
@@ -137,6 +137,6 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=130&color=0:a855f7,100:0ea5e9&section=footer" width="100%" alt="footer">
+<img src="https://capsule-render.vercel.app/api?type=waving&height=130&color=0:059669,55:0891b2,100:1e40af&section=footer" width="100%" alt="footer">
 
 </div>
